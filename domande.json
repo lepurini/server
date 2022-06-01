@@ -1,0 +1,44 @@
+{
+    "domande": [
+        [
+            "PROBLEM SOLVING",
+            "aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa "
+        ],
+        [
+            "ORIENTAMENTO AL RISULTATO",
+            "bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb "
+        ],
+        [
+            "DECISIONE",
+            "cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc "
+        ],
+        [
+            "COOPERAZIONE",
+            "dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd "
+        ],
+        [
+            "FLESSIBILITA'",
+            "eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee "
+        ],
+        [
+            "INNOVAZIONE",
+            "ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff "
+        ],
+        [
+            "RESISTENZA ALLO STRESS",
+            "gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg gggg "
+        ],
+        [
+            "IMPATTO",
+            "hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh "
+        ]
+    ],
+    "domFinali": [
+        "Giudizio complessivo",
+        "Punti forza",
+        "Idee migliorie",
+        "COMMENTI CONCLUSIVI (VALUTATO)",
+        "COMMENTI CONCLUSIVI (VALUTATORE)",
+        "COMMENTI CONCLUSIVI COLLOQUIO"
+    ]
+}
