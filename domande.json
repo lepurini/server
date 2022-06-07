@@ -1,4 +1,5 @@
 {
+    "valutatore": false,
     "domande": [
         [
             "PROBLEM SOLVING",
@@ -17,7 +18,7 @@
             "dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd "
         ],
         [
-            "FLESSIBILITA'",
+            "FLESSIBILITÀ",
             "eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee "
         ],
         [
@@ -40,5 +41,23 @@
         "COMMENTI CONCLUSIVI (VALUTATO)",
         "COMMENTI CONCLUSIVI (VALUTATORE)",
         "COMMENTI CONCLUSIVI COLLOQUIO"
+    ],
+    "dipendenti": [
+        "Ariel Duke",
+        "Vaughn Frye",
+        "Tristan Cannon",
+        "Zaire Hubbard",
+        "Frank Wallace",
+        "Maren Cherry",
+        "Chasity Dickerson",
+        "Shea Thornton",
+        "Aubree Mcknight",
+        "Kian Castaneda",
+        "Clark Tapia",
+        "Jamie Pena"
+    ],
+    "responsabile": [
+        "Nicola Menolli",
+        "Esempio Aaaaaa"
     ]
 }

@@ -1,48 +1,88 @@
-const http = require("http");
 const fs = require('fs');
+const express = require('express');
+//const { rows } = require('pg/lib/defaults');
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+        host: '127.0.0.1',
+        port: 5432,
+        user: 'postgres',
+        password: 'root',
+        database: 'postgres'
+    }
+});
+
+const app = express();
 
 const host = 'localhost';
 const port = 8000;
 
-//Percorso file con le domande
-const fileJSON = "./domande.json";
-//variabile che verrà riempita con le domande e spedita
-var fileDaMandare;
+const percorsoFileModello = "./fileModello.txt";
+var fileModello;
 
 
-const requestListener = function (req, res) {
+
+
+
+
+
+app.get('/', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
     res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,OPTIONS,POST');
     res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin, Content-Type, Accept, Accept-Language, Origin, User-Agent');
+    res.setHeader("Content-Type", "application/json");
 
 
-    if (req.method == "GET") {
-        res.setHeader("Content-Type", "application/json");
+    res.writeHead(200);
 
-        res.writeHead(200);
+    knex.select("*").from("domande_questionario").then((rows1) => {   //domande_questionario dipendenti
+        rows1 = aggiustaStringa(rows1);
 
-        fs.readFile(fileJSON, 'utf8', (err, data) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            console.log(data);
-            fileDaMandare = data;
+        knex.select("*").from("dipendenti").then((rows2) => {
+            rows2 = aggiustaStringa(rows2);
+
+            fileModello = fileModello.replace('"rimpiazzare"', rows1);
+            fileModello = fileModello.replace('"scambiare"', rows2);
+
+            res.end(fileModello);
         });
-        res.end(fileDaMandare);
-    }
-    else if (req.method == "POST") {
-        
-    }
-};
-
-//server in ascolto sulla porta 8000
-const server = http.createServer(requestListener);
-server.listen(port, host, () => {
-    console.log(`Server is running on http://${host}:${port}`);
+    });
 });
 
-/*{
-    "domande": ["PROBLEM SOLVING", "ORIENTAMENTO AL RISULTATO", "DECISIONE", "COOPERAZIONE", "FLESSIBILITA'", "INNOVAZIONE", "RESISTENZA ALLO STRESS", "IMPATTO"],
-    "descrizione": ["aaaa", "bbbb", "cccc", "dddd", "eeee'", "ffff", "gggg", "hhhh"]
-}*/
+
+app.post("/", (req, res) => {
+    let body = "";
+
+    res.setHeader('Access-Control-Allow-Headers', 'Accept,Accept-Language, Content - Language, Content - Type');
+
+    req.on('data', chunk => {
+        body += chunk;
+    });
+
+    req.on('end', () => {
+        console.log(body);
+        res.writeHead(200);
+        res.end('ricevuto');
+    });
+});
+
+
+
+app.listen(port, host, () => {
+    console.log(`Server is running on http://${host}:${port}`);
+    fs.readFile(percorsoFileModello, 'utf8', (err, data) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        //console.log(data);
+        fileModello = data;
+    });
+});
+
+
+function aggiustaStringa(contenuto) {
+    contenuto = JSON.stringify(contenuto);
+    contenuto = contenuto.substring(1, contenuto.length - 1);
+    return contenuto;
+}
