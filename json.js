@@ -79,7 +79,7 @@ app.post("/", (req, res) => {
         // res.writeHead(200);
         // res.end('ricevuto');
         res.writeHead(200);
-        res.end('ricevuto');
+        res.end("true");
     });
 });
 
