@@ -39,15 +39,15 @@ app.get("/questionario/:id", (req, res) => {
         knex.select("*").from("dipendenti").then((rows2) => {
             rows2 = aggiustaStringa(rows2);
 
-            fileModello = fileModello.replace('"rimpiazzare"', rows1);
-            fileModello = fileModello.replace('"scambiare"', rows2);
+            fileModello = fileModello.replace("\"rimpiazzare\"", rows1);
+            fileModello = fileModello.replace("\"scambiare\"", rows2);
 
             console.log("IU")
             res.end(fileModello);
             fileModello = fileVuoto;
         });
     });
-})
+});
 
 app.get('/valutatore/:id', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -59,11 +59,11 @@ app.get('/valutatore/:id', (req, res) => {
 
     knex.select("*").from("dipendenti").then((dipendenti) => {
         dipendenti = aggiustaStringa(dipendenti);
-        knex.select("*").from("valutazione_te").where("id_questionario", req.params.id).then((testate) => { 
+        knex.select("*").from("valutazione_te").where("id_questionario", req.params.id).then((testate) => {
             testate = aggiustaStringa(testate);
 
-            fileModello = fileModello.replace('"rimpiazzare"', dipendenti);
-            fileModello = fileModello.replace('"scambiare"', testate);
+            fileModello = fileModello.replace("\"rimpiazzare\"", testate);
+            fileModello = fileModello.replace("\"scambiare\"",  dipendenti);
 
             console.log("omaewa");
             res.end(fileModello);
@@ -73,6 +73,7 @@ app.get('/valutatore/:id', (req, res) => {
 });
 
 
+//restituisce i questionari
 app.get('/init', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
     res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,OPTIONS,POST');
@@ -83,25 +84,25 @@ app.get('/init', (req, res) => {
 
     //console.log(req.params);
 
-    if (req.url == "/init") {
-        knex.select("*").from("questionario").then((oggetto) => {
-            a = JSON.stringify(oggetto);
-            console.log(a);
-            console.log("maniconeeeeeeeeeeu");
-            /*rows1 = aggiustaStringa(rows1);
-    
-            knex.select("*").from("dipendenti").then((rows2) => {
-                rows2 = aggiustaStringa(rows2);
-    
-                fileModello = fileModello.replace('"rimpiazzare"', rows1);
-                fileModello = fileModello.replace('"scambiare"', rows2);
-    
-                console.log("IU")
-                res.end(fileModello);
-            });*/
-            res.end(a);
-        });
-    }
+    //if (req.url == "/init") {
+    knex.select("*").from("questionario").then((oggetto) => {
+        a = JSON.stringify(oggetto);
+        console.log(a);
+        console.log("maniconeeeeeeeeeeu");
+        /*rows1 = aggiustaStringa(rows1);
+ 
+        knex.select("*").from("dipendenti").then((rows2) => {
+            rows2 = aggiustaStringa(rows2);
+ 
+            fileModello = fileModello.replace('"rimpiazzare"', rows1);
+            fileModello = fileModello.replace('"scambiare"', rows2);
+ 
+            console.log("IU")
+            res.end(fileModello);
+        });*/
+        res.end(a);
+    });
+    //}
 
     /*if (req.url == "/questionario/:id") {
         console.log("cioa");
@@ -124,7 +125,7 @@ app.get('/init', (req, res) => {
 
 
 
-
+//mette i risultati di un questionario nel database
 app.post("/", (req, res) => {
     let body = "";
 
