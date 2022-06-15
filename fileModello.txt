@@ -1,8 +1,8 @@
 {
-    "domande": [
-        "rimpiazzare"
-    ],
-    "dipendenti": [
-        "scambiare"
-    ]
+    "domande": 
+        rimpiazzare
+    ,
+    "dipendenti": 
+        scambiare
+    
 }
