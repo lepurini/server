@@ -1,26 +1,4 @@
-const fs = require('fs');
-const express = require('express');
-const knex = require('knex')({
-    client: 'pg',
-    connection: {
-        host: '127.0.0.1',
-        port: 5432,
-        user: 'postgres',
-        password: 'root',
-        database: 'postgres'
-    }
-});
-
-const app = express();
-const host = 'localhost';
-const port = 8000;
-
-const percorsoFileModello = "./fileModello.txt";
-var fileModello, fileVuoto;
-
-
-/*
-//restituisce le domande di un questionario e i dipendenti
+/*//restituisce le domande di un questionario e i dipendenti
 app.get("/questionario/:id", (req, res) => {
     /*res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
     res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,OPTIONS,POST');
@@ -229,7 +207,25 @@ res.setHeader("Content-Type", "application/json");*/
 });
 });*/
 
+const fs = require('fs');
+const express = require('express');
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+        host: '127.0.0.1',
+        port: 5432,
+        user: 'postgres',
+        password: 'root',
+        database: 'postgres'
+    }
+});
 
+const app = express();
+const host = 'localhost';
+const port = 8000;
+
+const percorsoFileModello = "./fileModello.txt";
+var fileModello, fileVuoto;
 
 app.listen(port, host, () => {
     console.log(`Server is running on http://${host}:${port}`);
