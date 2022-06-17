@@ -209,6 +209,7 @@ res.setHeader("Content-Type", "application/json");*/
 
 const fs = require('fs');
 const express = require('express');
+const { rawListeners } = require('process');
 const knex = require('knex')({
     client: 'pg',
     connection: {
@@ -321,6 +322,18 @@ app.get('/v/:responsabile/:idV/:idQ', (req, res) => {
         ritornaValutazioniTE(req.params.idQ, req.params.idV).then((testate) => {
             fileModello = aggiustaFileDaMandare(fileModello, testate, dipendenti, res);
             console.log("terzo get");
+        });
+    });
+});
+
+app.get('/prendiRiposte/:idTE/:idQuestionario', (req, res) => {
+    res = settaHeader(res);
+
+    ritornaDatiDaDatabase("domande_questionario", "id_questionario", req.params.idQuestionario, "id").then((rows1) => {
+        console.log(rows1);
+        ritornaDatiDaDatabase("valutazione_de", "id_te", req.params.idTE, "id").then((rows2) => {
+            fileModello = aggiustaFileDaMandare(fileModello, rows1, rows2, res);
+            console.log("get per l'admin");
         });
     });
 });
