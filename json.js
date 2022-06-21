@@ -120,11 +120,30 @@ app.get('/prendiRiposte/:idTE/:idQuestionario', (req, res) => {
     res = settaHeader(res);
 
     ritornaDatiDaDatabase("domande_questionario", "id_questionario", req.params.idQuestionario, "id").then((rows1) => {
-        console.log(rows1);
+        //console.log(rows1);
         ritornaDatiDaDatabase("valutazione_de", "id_te", req.params.idTE, "id").then((rows2) => {
             fileModello = aggiustaFileDaMandare(fileModello, rows1, rows2, res);
             console.log("get per l'admin");
         });
+    });
+});
+
+app.get('/prendiRisposteDipendente/:idDipendente/:idQuestionario', (req, res) => {
+    res = settaHeader(res);
+    //ritornaDatiDaDatabase("valutazioni_te").then((rows1) => {})
+    knex.select("id").from("valutazione_te").where("id_dipendente", req.params.idDipendente).where("id_questionario", req.params.idQuestionario).where("tipo", 1).orderBy('id', 'asc').limit(1).then((risultato) => {
+        //console.log("arrivede");
+        console.log(risultato);
+        console.log(risultato.length);
+        //res.end(JSON.stringify(risultato));
+        if (risultato.length == 0) {
+            console.log("arrivede");
+            res.end("false");
+        } else {
+            knex.select("*").from("valutazione_de").where("id_te", risultato[0].id).orderBy('id', 'asc').then((risposte) => {
+                res.end(JSON.stringify(risposte));
+            });
+        }
     });
 });
 
