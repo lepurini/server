@@ -95,13 +95,13 @@ app.get('/init', (req, res) => {
 });
 
 //manda solo i responsabili
-app.get('/prendiValutatori', (req, res) => {
+/*app.get('/prendiValutatori', (req, res) => {
     res = settaHeader(res);
 
     ritornaDatiDaDatabase("dipendenti", "responsabile", null, "id").then((valutatori) => {
         res.end(JSON.stringify(valutatori));
     });
-});
+});*/
 
 //manda le testate di valutazione fatte da un responsabile sui suoi sottoposti,
 //sull'interfaccia si potranno vedere i dipendenti con scritto se sono gia stati valutati dal responsabile
@@ -116,6 +116,7 @@ app.get('/v/:responsabile/:idV/:idQ', (req, res) => {
     });
 });
 
+
 app.get('/prendiRiposte/:idTE/:idQuestionario', (req, res) => {
     res = settaHeader(res);
 
@@ -128,6 +129,7 @@ app.get('/prendiRiposte/:idTE/:idQuestionario', (req, res) => {
     });
 });
 
+//ritorna le risposte di una determinata testata
 app.get('/prendiRisposteDipendente/:idDipendente/:idQuestionario', (req, res) => {
     res = settaHeader(res);
     //ritornaDatiDaDatabase("valutazioni_te").then((rows1) => {})
@@ -137,14 +139,39 @@ app.get('/prendiRisposteDipendente/:idDipendente/:idQuestionario', (req, res) =>
         console.log(risultato.length);
         //res.end(JSON.stringify(risultato));
         if (risultato.length == 0) {
-            console.log("arrivede");
+            //console.log("arrivede");
             res.end("false");
         } else {
-            knex.select("*").from("valutazione_de").where("id_te", risultato[0].id).orderBy('id', 'asc').then((risposte) => {
+            /*knex.select("*").from("valutazione_de").where("id_te", risultato[0].id).orderBy('id', 'asc').then((risposte) => {
                 res.end(JSON.stringify(risposte));
+            });*/
+            ritornaDatiDaDatabase("valutazione_de", "id_te", risultato[0].id, "id").then((rows1) => {
+                console.log("funzionaaa");
+                res.end(JSON.stringify(rows1));
             });
         }
     });
+});
+
+//ritorna gli admin/responsabili per vedere se uno che accede ha i permessi
+app.get('/controllopermessi/:carattere/:uuid', (req, res) => {
+    res = settaHeader(res);
+
+    knex.select("cognomenome","id","responsabile","ruolo","ufficio").from("dipendenti").where("ruolo", req.params.carattere).where("uuid", req.params.uuid).then((risposte) => {
+        console.log(risposte);
+        if (risposte.length == 0) {
+            console.log("dentro")
+            res.end("false");
+        } else {
+            res.end(JSON.stringify(risposte));
+        }
+        //console.log(JSON.stringify(risposte));
+        //res.end(JSON.stringify(risposte));
+    });
+    /*ritornaDatiDaDatabase("dipendenti", "ruolo", req.params.carattere, "id").then((rows1) => {
+        console.log(JSON.stringify(rows1));
+        res.end(JSON.stringify(rows1));
+    });*/
 });
 
 //mette la testata e le risposte alle varie domande di un questionario nel database
